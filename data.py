@@ -20,7 +20,7 @@ class PlaceAirQuality:
     #I'm not sure if we should have repr return all the values, add ones you think are important still
 
     def calculate_aqi_average(self):
-        return sum(self.pm25_week) / len(self.pm25_week)
+        return sum(self.aqi_week) / len(self.aqi_week)
 
     def find_aqi_extremes(self):
         max_value = max(self.aqi_week)
@@ -31,14 +31,13 @@ class PlaceAirQuality:
         days = []
         for i in range(len(self.aqi_week)):
             if self.aqi_week[i] > threshold:
-                days.append(self.aqi_week[i])
+                days.append(i + 1)
         return days
-
 
     def total_emissions(self):
         total = 0
-        for source in self.emissions_by_source:
-            total += self.emissions_by_source[source]
+        for source in self.emissions_sources:
+            total += self.emissions_sources[source]
         return total
 
     def emissions_per_capita(self):
@@ -53,13 +52,16 @@ class PlaceAirQuality:
         renewable_total = 0
         total = 0
 
-        for energy in self.energy_mix:
-            total += self.energy_mix[energy]
+        for energy in self.energy:
+            total += self.energy[energy]
             if energy in renewable_types:
-                renewable_total += self.energy_mix[energy]
+                renewable_total += self.energy[energy]
 
         if total == 0:
             return 0
         return (renewable_total / total) * 100
+
+    def calculate_pm25_average(self):
+        return sum(self.pm25_week) / len(self.pm25_week)
 
 

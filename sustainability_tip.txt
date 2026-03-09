@@ -1,0 +1,3 @@
+high_emissions: Focus on cleaner transportation, lower fossil fuel use, and stronger energy efficiency policies.
+strong_renewables: Keep expanding solar, wind, and hydro systems while protecting current air quality gains.
+needs_improvement: Reduce emissions from major sources and invest more in sustainable energy systems.
