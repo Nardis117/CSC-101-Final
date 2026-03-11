@@ -1,7 +1,7 @@
 class PlaceAirQuality:
     def __init__(self, place_id, place_name, place_type,
                  aqi_week, pm25_week, population,
-                 emissions_sources, energy, income_sources,
+                 emissions_sources, energy,
                  sustainability_actions):
         self.place_id = place_id
         self.place_name = place_name
@@ -17,7 +17,7 @@ class PlaceAirQuality:
     def __repr__(self):
         avg_aqi = self.calculate_aqi_average()
         avg_pm25 = self.calculate_pm25_average()
-        return "PlaceAirQuality(name = {}, avg_aqi = {:.1f})".format(self.place_name, avg_aqi)
+        return "PlaceAirQuality(name = {}, avg_aqi = {:.1f}, avg_pm25 = {:.1f})".format(self.place_name, avg_aqi, avg_pm25)
         #Ethan Huynh
 
     def calculate_aqi_average(self):

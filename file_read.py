@@ -44,7 +44,6 @@ def load_places_from_file(filename):
             emissions,
             energy,
             [],
-            []
         )
 
         places.append(place)

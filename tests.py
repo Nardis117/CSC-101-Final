@@ -11,7 +11,7 @@ test_place = PlaceAirQuality(1, 'Test City', 'city',
                              [10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0],1000,
                              {"cars": 5000, 'power_plants': 3000, 'industry': 2000, "deforestation": 0},
                              {'solar': 30, 'wind': 20, 'hydro': 10, 'coal': 20, 'gas': 20},
-                             ['manufacturing'],['Efficiency program'])
+                             ['manufacturing'])
 
 class TestPlaceAirQuality(unittest.TestCase):
 
@@ -32,7 +32,7 @@ class TestPlaceAirQuality(unittest.TestCase):
                                 10,{'cars': 10,
                                 'power_plants': 10, 'industry': 10, 'deforestation': 10},
                                 {'solar': 10, 'wind': 10, 'hydro': 10, 'coal': 10,
-                                 'gas': 10},[], [])
+                                 'gas': 10},[])
 
         self.assertEqual(place.check_aqi_threshold(13), [5, 6, 7])
 
@@ -50,7 +50,7 @@ class TestPlaceAirQuality(unittest.TestCase):
                                 [10, 17, 10, 17, 10, 17, 10],[10.0] * 7,10,
                                 {'cars': 10, 'power_plants': 10, 'industry': 10, 'deforestation': 10},
                                 {'solar': 10, 'wind': 10, 'hydro': 10, 'coal': 10, 'gas': 10},
-                                [], [])
+                                [])
 
         highest, lowest = place.find_aqi_extremes()
         self.assertEqual(highest, 17)
@@ -74,7 +74,6 @@ class TestPlaceAirQuality(unittest.TestCase):
                                 [10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0],10,
                                 {'cars': 10, 'power_plants': 10, 'industry': 10, 'deforestation': 10},
                                 {'solar': 10, 'wind': 10, 'hydro': 10, 'coal': 10, 'gas': 10},
-                                [],
                                 [])
         self.assertEqual(place.total_emissions(), 40)
 
@@ -87,7 +86,7 @@ class TestPlaceAirQuality(unittest.TestCase):
                                 [10.0] * 7,10,{'cars': 10,
                                 'power_plants': 11, 'industry': 12, 'deforestation': 13},
                                 {'solar': 10, 'wind': 10, 'hydro': 10, 'coal': 10, 'gas': 10},
-                                [], [])
+                                [])
 
         self.assertEqual(place.emissions_per_capita(), 4.6)
 
@@ -100,7 +99,7 @@ class TestPlaceAirQuality(unittest.TestCase):
                                 'city', [10] * 7, [1] * 7,100,
                                 {'cars': 100},{'solar': 0,
                                 "wind": 0, "hydro": 0, 'coal': 0, 'gas': 0},
-                                [],[])
+                                [])
         self.assertEqual(place.renewables(), 0)
 
 class TestMain(unittest.TestCase):
@@ -121,7 +120,7 @@ class TestMain(unittest.TestCase):
                                 {'cars': 100, 'power_plants': 100,
                                  'industry': 100, 'deforestation': 100},
                                 {'solar': 0, 'wind': 0, 'hydro': 0, 'coal': 100,
-                                 'gas': 100},[],[])
+                                 'gas': 100},[])
 
         tip = main.sustainability_message(place)
         self.assertIn("still need improvement", tip)
