@@ -12,20 +12,23 @@ class PlaceAirQuality:
         self.emissions_sources = emissions_sources
         self.energy = energy
         self.sustainability_actions = sustainability_actions
+        #Ethan Huynh
 
     def __repr__(self):
         avg_aqi = self.calculate_aqi_average()
         avg_pm25 = self.calculate_pm25_average()
-        return "PlaceAirQuality(name = {}, avg_aqi = {:.1f}".format(self.place_name, avg_aqi)
-    #I'm not sure if we should have repr return all the values, add ones you think are important still
+        return "PlaceAirQuality(name = {}, avg_aqi = {:.1f})".format(self.place_name, avg_aqi)
+        #Ethan Huynh
 
     def calculate_aqi_average(self):
         return sum(self.aqi_week) / len(self.aqi_week)
+        #Ethan Huynh
 
     def find_aqi_extremes(self):
         max_value = max(self.aqi_week)
         min_value = min(self.aqi_week)
         return [max_value, min_value]
+        #Ethan Huynh
 
     def check_aqi_threshold(self, threshold):
         days = []
@@ -33,19 +36,19 @@ class PlaceAirQuality:
             if self.aqi_week[i] > threshold:
                 days.append(i + 1)
         return days
-
+        #Ethan Huynh
     def total_emissions(self):
         total = 0
         for source in self.emissions_sources:
             total += self.emissions_sources[source]
         return total
+        #Ethan Huynh
 
     def emissions_per_capita(self):
         if self.population == 0:
             return 0
         return self.total_emissions() / self.population
-
-    #def emission_sources?
+        #Ethan Huynh
 
     def renewables(self):
         renewable_types = ['solar', 'wind', 'hydro']
@@ -60,8 +63,10 @@ class PlaceAirQuality:
         if total == 0:
             return 0
         return (renewable_total / total) * 100
+        #Ethan Huynh
 
     def calculate_pm25_average(self):
         return sum(self.pm25_week) / len(self.pm25_week)
+        #Jake Carreon
 
 
